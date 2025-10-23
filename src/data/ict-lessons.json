@@ -1,0 +1,193 @@
+{
+  "subject": "ICT",
+  "grade": "G.C.E. Advanced Level",
+  "syllabus_effective_from": 2019,
+  "units": [
+    {
+      "unit_number": 1,
+      "unit_title": "Basic Concepts of ICT",
+      "periods": 28,
+      "topics": [
+        "What is ICT?",
+        "Components of a computer system (hardware, software, firmware)",
+        "Data, information and their differences",
+        "Information life cycle and processing",
+        "Uses of ICT in society, business and education",
+        "Ethical, social, legal issues related to ICT"
+      ]
+    },
+    {
+      "unit_number": 2,
+      "unit_title": "Evolution of Computers",
+      "periods": 22,
+      "topics": [
+        "History and generations of computers",
+        "Characteristics of each generation",
+        "Key inventors and milestones in computing history",
+        "Types of computers (supercomputer, mainframe, personal, embedded)",
+        "Impact of technological change on computer development"
+      ]
+    },
+    {
+      "unit_number": 3,
+      "unit_title": "Data Representation (Number Systems etc.)",
+      "periods": 18,
+      "topics": [
+        "Number systems – decimal, binary, octal, hexadecimal",
+        "Conversions between number systems",
+        "Binary arithmetic (addition, subtraction, 2's complement)",
+        "Data types, character codes (ASCII, Unicode)",
+        "Data storage units (bit, byte, kilobyte …)",
+        "Sampling, resolution (for digital media)"
+      ]
+    },
+    {
+      "unit_number": 4,
+      "unit_title": "Fundamentals of Digital Circuits (Logic Gates etc.)",
+      "periods": 26,
+      "topics": [
+        "Basic logic gates – AND, OR, NOT",
+        "Derived gates – NAND, NOR, XOR, XNOR",
+        "Boolean algebra and simplification",
+        "Truth tables and logic expressions",
+        "Combinational circuits (adders, multiplexers)",
+        "Sequential circuits (flip-flops, counters, registers)",
+        "Applications of digital circuits"
+      ]
+    },
+    {
+      "unit_number": 5,
+      "unit_title": "Operating Systems",
+      "periods": 22,
+      "topics": [
+        "Definition and functions of an operating system",
+        "Types of operating systems (batch, multi-user, real-time, mobile)",
+        "Process management – process states, scheduling (FCFS, SJF, etc.)",
+        "Memory management – paging, segmentation, virtual memory",
+        "File systems, device management, I/O management",
+        "Security and protection, user interfaces (CLI vs GUI)"
+      ]
+    },
+    {
+      "unit_number": 6,
+      "unit_title": "Data Communication & Networking",
+      "periods": 50,
+      "topics": [
+        "Basics of data communication – components, types of networks",
+        "OSI and TCP/IP models",
+        "Network devices (routers, switches, hubs, modems)",
+        "Transmission media (wired, wireless)",
+        "IP addressing and subnetting",
+        "Network topologies, protocols, error detection/correction",
+        "Network security (firewalls, encryption, etc.)",
+        "Emerging technologies in networking (IoT, 5G)"
+      ]
+    },
+    {
+      "unit_number": 7,
+      "unit_title": "System Analysis & Design",
+      "periods": 68,
+      "topics": [
+        "Information systems and their importance",
+        "System development life cycle (SDLC)",
+        "Feasibility study and requirements gathering",
+        "Data Flow Diagrams (DFD), Entity-Relationship Diagrams (ERD)",
+        "UML diagrams, use-cases, class diagrams",
+        "Designing the logical and physical model",
+        "Implementation, testing, maintenance and evaluation of systems"
+      ]
+    },
+    {
+      "unit_number": 8,
+      "unit_title": "Database Management",
+      "periods": 50,
+      "topics": [
+        "Introduction to databases – information & data, need for DBMS",
+        "Relational database model – tables, rows, columns, keys",
+        "Components of a database system – DBMS software, hardware, data storage",
+        "Designing conceptual schema – ER diagrams (entities, attributes, relationships)",
+        "Transforming ER diagrams into logical schema (tables, keys, relationships)",
+        "Normalization – 1NF, 2NF, 3NF",
+        "Structured Query Language (SQL) – DDL, DML commands, queries",
+        "Implementing and managing databases – indexing, views, transactions"
+      ]
+    },
+    {
+      "unit_number": 9,
+      "unit_title": "Programming",
+      "periods": 74,
+      "topics": [
+        "Problem solving and algorithm design",
+        "Flowcharts and pseudocode",
+        "Programming constructs – variables, data types, operators",
+        "Control structures – sequence, selection, iteration",
+        "Functions/procedures, scope, recursion",
+        "Object-oriented programming basics (classes, objects, inheritance)",
+        "File handling, error/exception handling",
+        "Data structures (arrays, lists), basic algorithms (searching, sorting)"
+      ]
+    },
+    {
+      "unit_number": 10,
+      "unit_title": "Web Development",
+      "periods": 60,
+      "topics": [
+        "Introduction to Web – WWW, HTTP, web servers/clients",
+        "HTML5 – structure of web pages, tags",
+        "CSS – styling and layout",
+        "Client-side scripting (JavaScript basics)",
+        "Server-side scripting and web connectivity (e.g., PHP, Node.js)",
+        "Database connectivity with web applications (e.g., MySQL, SQL)",
+        "Web application architecture, security issues, responsive design"
+      ]
+    },
+    {
+      "unit_number": 11,
+      "unit_title": "Internet of Things (IoT)",
+      "periods": 15,
+      "topics": [
+        "Definition and characteristics of IoT",
+        "Sensors, actuators and microcontrollers (Arduino, Raspberry Pi)",
+        "Communication technologies for IoT (Bluetooth, Zigbee, WiFi)",
+        "IoT architecture and data flow",
+        "Applications of IoT in smart homes, cities, industry",
+        "Privacy, security and ethical issues in IoT"
+      ]
+    },
+    {
+      "unit_number": 12,
+      "unit_title": "ICT in Business",
+      "periods": 12,
+      "topics": [
+        "E-business, e-commerce models",
+        "Digital marketing – social media, SEO",
+        "Enterprise resource planning (ERP) and CRM",
+        "ICT for entrepreneurship and small business",
+        "Trend analysis and business intelligence (BI) tools"
+      ]
+    },
+    {
+      "unit_number": 13,
+      "unit_title": "New Trends & Future Directions in ICT",
+      "periods": 12,
+      "topics": [
+        "Artificial Intelligence and Machine Learning basics",
+        "Blockchain technology and applications",
+        "Cloud computing and services (SaaS, PaaS, IaaS)",
+        "Big Data analytics and data science introduction",
+        "Augmented Reality (AR), Virtual Reality (VR) and their applications"
+      ]
+    },
+    {
+      "unit_number": 14,
+      "unit_title": "ICT Project",
+      "periods": 30,
+      "topics": [
+        "Project planning and requirement gathering",
+        "Designing system/solution – interface, data structures, processes",
+        "Implementation and documentation of the project",
+        "Testing, evaluation, maintenance, presentation"
+      ]
+    }
+  ]
+}
