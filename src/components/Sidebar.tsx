@@ -7,12 +7,16 @@ import ThemeToggle from './ThemeToggle';
 
 const sidebarItems = [
   { name: "About us", path: "/about", icon: "ℹ️" },
-  { name: "A/L 2027", path: "/al-2027", icon: "🎓" },
-  { name: "A/L 2026", path: "/al-2026", icon: "🎓" },
-  { name: "Tutes", path: "/tutorials", icon: "📚" },
-  { name: "Videos", path: "/videos", icon: "🎥" },
-  { name: "Discussions", path: "/discussions", icon: "💬" },
-  { name: "Past papers", path: "/past-papers", icon: "📄" },
+  { name: "GCE A/L ICT", path: "/gce-al-ict", icon: "🎓" },
+  { name: "Edexcel IAL IT", path: "/edexcel-ial-it", icon: "🎓" },
+  { name: "Tutes - GCE A/L ICT", path: "/tutorials-gce-al-ict", icon: "📚" },
+  { name: "Video Tutorials - GCE A/L ICT", path: "/videos-gce-al-ict", icon: "🎥" },
+  { name: "Question Discussions - GCE A/L ICT", path: "/discussions-gce-al-ict", icon: "💬" },
+  { name: "Past papers - GCE A/L ICT", path: "/past-papers-gce-al-ict", icon: "📄" },
+  { name: "Tutes - Edexcel IAL IT", path: "/tutorials-edexcel-ial-it", icon: "📚" },
+  { name: "Video Tutorials - Edexcel IAL IT", path: "/videos-edexcel-ial-it", icon: "🎥" },
+  { name: "Question Discussions - Edexcel IAL IT", path: "/discussions-edexcel-ial-it", icon: "💬" },
+  { name: "Past papers - Edexcel IAL IT", path: "/past-papers-edexcel-ial-it", icon: "📄" },
   { name: "Contact", path: "/contact", icon: "📞" }
 ];
 
@@ -39,22 +43,22 @@ export default function Sidebar({ className = '' }: SidebarProps) {
       <div
         className={`
           sidebar
-          ${isCollapsed ? 'w-16' : 'w-64'} 
+          ${isCollapsed ? 'w-16' : 'w-16 md:w-64'} 
           border-r 
           transition-all duration-300 ease-in-out flex flex-col shadow-lg
         `}
         style={{ height: '100vh' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b sidebar-item flex-shrink-0">
+        <div className="flex items-center justify-between p-4 border-b sidebar-item flex-shrink-0 hidden md:flex">
           {!isCollapsed && (
-            <h2 className="text-xl font-bold sidebar-item">
+            <h2 className="text-xl font-bold sidebar-item hidden md:block">
               Think Tech LK
             </h2>
           )}
           <button
             onClick={toggleSidebar}
-            className="sidebar-item p-2 rounded-lg transition-colors"
+            className="sidebar-item p-2 rounded-lg transition-colors hidden md:block"
             aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {isCollapsed ? (
@@ -80,7 +84,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                     ? 'bg-blue-100 text-blue-600 border-r-2 border-blue-500' 
                     : ''
                   }
-                  ${isCollapsed ? 'justify-center' : 'justify-start'}
+                  ${isCollapsed ? 'justify-center' : 'justify-center md:justify-start'}
                   group
                 `}
                 style={{
@@ -92,18 +96,21 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 {/* Icon */}
                 <div className={`
                   flex items-center justify-center text-lg
-                  ${isCollapsed ? '' : 'mr-3'}
+                  ${isCollapsed ? '' : 'md:mr-3'}
                 `}>
                   {item.icon}
                 </div>
                 
                 {!isCollapsed && (
-                  <span className="font-medium truncate">{item.name}</span>
+                  <span className="font-medium truncate hidden md:inline">{item.name}</span>
                 )}
                 
-                {/* Tooltip for collapsed state */}
+                {/* Tooltip for mobile and collapsed state */}
+                <div className="absolute left-16 ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 md:hidden">
+                  {item.name}
+                </div>
                 {isCollapsed && (
-                  <div className="absolute left-16 ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                  <div className="absolute left-16 ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 hidden md:block">
                     {item.name}
                   </div>
                 )}
@@ -114,8 +121,8 @@ export default function Sidebar({ className = '' }: SidebarProps) {
 
         {/* Footer */}
         <div className="sidebar-item p-4 border-t space-y-3 flex-shrink-0">
-          {/* Theme Toggle */}
-          <div className="flex justify-center">
+          {/* Theme Toggle - Hidden on mobile since it's in the mobile header */}
+          <div className="hidden md:flex justify-center">
             <ThemeToggle 
               showLabel={!isCollapsed} 
               className={isCollapsed ? 'px-2 py-2' : ''} 
@@ -123,8 +130,8 @@ export default function Sidebar({ className = '' }: SidebarProps) {
           </div>
           
           {!isCollapsed && (
-            <div className="text-xs text-center" style={{color: 'var(--sidebar-text)', opacity: 0.6}}>
-              © 2024 Think Tech LK
+            <div className="text-xs text-center hidden md:block" style={{color: 'var(--sidebar-text)', opacity: 0.6}}>
+              © All rights reserved.
             </div>
           )}
         </div>

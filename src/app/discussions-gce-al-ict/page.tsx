@@ -77,14 +77,11 @@ export default function DiscussionsPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2" style={{color: 'var(--foreground)'}}>
-            ICT Discussion Materials
-          </h1>
           <p className="text-lg" style={{color: 'var(--foreground)', opacity: 0.8}}>
-            {ictLessons.subject} - {ictLessons.grade}
+            {ictLessons.subject} - {ictLessons.grade} (Question Discussions)
           </p>
           <p className="text-sm mt-1" style={{color: 'var(--foreground)', opacity: 0.6}}>
-            MCQ, Structured Essay, and Essay question discussions for all topics
+            MCQ, Structured Essay, and Essay Question Discussions
           </p>
         </div>
 

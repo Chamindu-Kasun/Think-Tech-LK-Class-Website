@@ -1,24 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import ictLessons from '@/data/ict-lessons.json';
+import edexcelData from '@/data/ict-lessons-edexcel.json';
 import { DocumentIcon, ClockIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 
 interface Unit {
   unit_number: number;
   unit_title: string;
-  periods: number;
   topics: string[];
 }
 
-export default function TutorialsPage() {
+export default function EdexcelTutorials() {
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   
   const handleTopicClick = (unitTitle: string, topic: string) => {
     console.log(`Loading PDF for: ${unitTitle} - ${topic}`);
     
     // Construct PDF path
-    const pdfPath = `/pdfs/${encodeURIComponent(unitTitle)}/${encodeURIComponent(topic)}.pdf`;
+    const pdfPath = `/pdfs-edexcel/${encodeURIComponent(unitTitle)}/${encodeURIComponent(topic)}.pdf`;
     
     // Try to open the PDF
     const newWindow = window.open(pdfPath, '_blank');
@@ -29,26 +28,26 @@ export default function TutorialsPage() {
         // PDF loaded successfully
       };
       newWindow.onerror = () => {
-        alert(`PDF not found for:\nUnit: ${unitTitle}\nTopic: ${topic}\n\nPlease add the PDF file to: public/pdfs/${unitTitle}/${topic}.pdf`);
+        alert(`PDF not found for:\nUnit: ${unitTitle}\nTopic: ${topic}\n\nPlease add the PDF file to: public/pdfs-edexcel/${unitTitle}/${topic}.pdf`);
       };
     }
   };
 
   const getUnitIcon = (unitNumber: number) => {
-    const icons = ['💡', '🖥️', '🔢', '⚡', '🛠️', '🌐', '📋', '🗄️', '👨‍💻', '🌍', '🤖', '💼', '🚀', '📚'];
+    const icons = ['🖥️', '🌐', '💼', '🗄️', '🚀'];
     return icons[unitNumber - 1] || '📚';
   };
 
   return (
-    <div className="p-6 max-h-screen" style={{backgroundColor: 'var(--background)', color: 'var(--foreground)'}}>
+    <div className="p-6 min-h-screen" style={{backgroundColor: 'var(--background)', color: 'var(--foreground)'}}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <p className="text-lg" style={{color: 'var(--foreground)', opacity: 0.8}}>
-            {ictLessons.subject} - {ictLessons.grade}
+            {edexcelData.subject} - {edexcelData.qualification}
           </p>
           <p className="text-sm mt-1" style={{color: 'var(--foreground)', opacity: 0.6}}>
-            Syllabus effective from {ictLessons.syllabus_effective_from}
+            Tutes
           </p>
         </div>
 
@@ -70,10 +69,6 @@ export default function TutorialsPage() {
                     Unit {selectedUnit.unit_number}: {selectedUnit.unit_title}
                   </h2>
                   <div className="flex items-center gap-4 mt-2 text-sm" style={{color: 'var(--foreground)', opacity: 0.7}}>
-                    <span className="flex items-center gap-1">
-                      <ClockIcon className="w-4 h-4" />
-                      {selectedUnit.periods} periods
-                    </span>
                     <span className="flex items-center gap-1">
                       <BookOpenIcon className="w-4 h-4" />
                       {selectedUnit.topics.length} topics
@@ -99,16 +94,16 @@ export default function TutorialsPage() {
                       <h3 className="font-medium text-sm leading-snug mb-2" style={{color: 'var(--foreground)'}}>
                         {topic}
                       </h3>
-                      <div className="flex items-center gap-1 text-xs" style={{color: 'var(--foreground)', opacity: 0.6}}>
-                        <DocumentIcon className="w-3 h-3" />
-                        <span>PDF Material</span>
+                      <p className="text-xs leading-relaxed" style={{color: 'var(--foreground)', opacity: 0.6}}>
+                        Click to open tutorial PDF
+                      </p>
+                      
+                      {/* Hover indicator */}
+                      <div className="text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity mt-2">
+                        Open PDF →
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Hover indicator */}
-                  <div className="mt-3 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Click to open PDF →
+                    <DocumentIcon className="w-5 h-5 text-blue-600 opacity-50 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
               ))}
@@ -117,7 +112,7 @@ export default function TutorialsPage() {
         ) : (
           /* Units Grid View */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {ictLessons.units.map((unit) => (
+            {edexcelData.units.map((unit) => (
               <div
                 key={unit.unit_number}
                 onClick={() => setSelectedUnit(unit)}
@@ -137,10 +132,6 @@ export default function TutorialsPage() {
 
                   <div className="space-y-2 text-xs" style={{color: 'var(--foreground)', opacity: 0.7}}>
                     <div className="flex items-center justify-center gap-1">
-                      <ClockIcon className="w-3 h-3" />
-                      <span>{unit.periods} periods</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1">
                       <BookOpenIcon className="w-3 h-3" />
                       <span>{unit.topics.length} topics</span>
                     </div>
@@ -148,7 +139,7 @@ export default function TutorialsPage() {
 
                   {/* Hover indicator */}
                   <div className="mt-4 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Click to explore topics →
+                    Click to view topics →
                   </div>
                 </div>
               </div>
@@ -159,7 +150,9 @@ export default function TutorialsPage() {
         {/* Footer Note */}
         <div className="card mt-8 p-4 rounded-lg border">
           <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            📁 To use PDF functionality, place your PDF files in the <code>public/pdfs/</code> folder organized by unit and topic names.
+            � To use tutorial functionality, organize PDF files in: <code>public/pdfs-edexcel/[Unit]/[Topic].pdf</code>
+            <br />
+            {edexcelData.qualification} - {edexcelData.subject} (First Teaching: {edexcelData.first_teaching})
           </p>
         </div>
       </div>

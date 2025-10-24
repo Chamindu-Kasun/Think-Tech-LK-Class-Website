@@ -1,24 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import ictLessons from '@/data/ict-lessons.json';
+import edexcelData from '@/data/ict-lessons-edexcel.json';
 import { PlayIcon, ClockIcon, VideoCameraIcon, BookOpenIcon } from '@heroicons/react/24/outline';
 
 interface Unit {
   unit_number: number;
   unit_title: string;
-  periods: number;
   topics: string[];
 }
 
-export default function VideosPage() {
+export default function EdexcelVideos() {
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
   
   const handleVideoClick = (unitTitle: string, topic: string) => {
     console.log(`Playing video for: ${unitTitle} - ${topic}`);
     
     // Construct video path - could be MP4, YouTube embed, or other video formats
-    const videoPath = `/videos/${encodeURIComponent(unitTitle)}/${encodeURIComponent(topic)}.mp4`;
+    const videoPath = `/videos-edexcel/${encodeURIComponent(unitTitle)}/${encodeURIComponent(topic)}.mp4`;
     
     // Try to open the video - you can modify this to use a video player modal instead
     const newWindow = window.open(videoPath, '_blank');
@@ -29,20 +28,32 @@ export default function VideosPage() {
         // Video loaded successfully
       };
       newWindow.onerror = () => {
-        alert(`Video not found for:\nUnit: ${unitTitle}\nTopic: ${topic}\n\nPlease add the video file to: public/videos/${unitTitle}/${topic}.mp4`);
+        alert(`Video not found for:\nUnit: ${unitTitle}\nTopic: ${topic}\n\nPlease add the video file to: public/videos-edexcel/${unitTitle}/${topic}.mp4`);
       };
     }
   };
 
   const getUnitIcon = (unitNumber: number) => {
-    const icons = ['💡', '🖥️', '🔢', '⚡', '🛠️', '🌐', '📋', '🗄️', '👨‍💻', '🌍', '🤖', '💼', '🚀', '📚'];
+    const icons = ['🖥️', '🌐', '💼', '🗄️', '🚀'];
     return icons[unitNumber - 1] || '📚';
   };
 
   const getEstimatedDuration = (topicIndex: number) => {
     // Simulate different video durations
-    const durations = ['5-8 min', '10-15 min', '8-12 min', '12-18 min', '6-10 min', '15-20 min', '7-11 min', '9-14 min'];
+    const durations = ['5-8 min', '10-15 min', '8-12 min', '12-18 min', '6-10 min'];
     return durations[topicIndex % durations.length];
+  };
+
+  const getVideoThumbnailGradient = (topicIndex: number) => {
+    const gradients = [
+      'from-blue-400 to-purple-600',
+      'from-green-400 to-blue-600', 
+      'from-purple-400 to-pink-600',
+      'from-yellow-400 to-red-600',
+      'from-indigo-400 to-blue-600',
+      'from-pink-400 to-red-600'
+    ];
+    return gradients[topicIndex % gradients.length];
   };
 
   return (
@@ -50,14 +61,11 @@ export default function VideosPage() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2" style={{color: 'var(--foreground)'}}>
-            ICT Video Lectures
-          </h1>
           <p className="text-lg" style={{color: 'var(--foreground)', opacity: 0.8}}>
-            {ictLessons.subject} - {ictLessons.grade}
+            {edexcelData.subject} - {edexcelData.qualification}
           </p>
           <p className="text-sm mt-1" style={{color: 'var(--foreground)', opacity: 0.6}}>
-            Comprehensive video tutorials for all ICT units
+            Video Tutorials
           </p>
         </div>
 
@@ -80,12 +88,8 @@ export default function VideosPage() {
                   </h2>
                   <div className="flex items-center gap-4 mt-2 text-sm" style={{color: 'var(--foreground)', opacity: 0.7}}>
                     <span className="flex items-center gap-1">
-                      <ClockIcon className="w-4 h-4" />
-                      {selectedUnit.periods} periods
-                    </span>
-                    <span className="flex items-center gap-1">
                       <VideoCameraIcon className="w-4 h-4" />
-                      {selectedUnit.topics.length} videos
+                      {selectedUnit.topics.length} video lessons
                     </span>
                   </div>
                 </div>
@@ -93,43 +97,40 @@ export default function VideosPage() {
             </div>
 
             {/* Video Tiles */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {selectedUnit.topics.map((topic, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {selectedUnit.topics.map((topic, topicIndex) => (
                 <div
-                  key={index}
+                  key={topicIndex}
                   onClick={() => handleVideoClick(selectedUnit.unit_title, topic)}
-                  className="card rounded-lg shadow-md border cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg group overflow-hidden"
+                  className="card rounded-lg overflow-hidden shadow-md border cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg group"
                 >
-                  {/* Video Thumbnail Placeholder */}
-                  <div className="relative h-40 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                    <PlayIcon className="w-16 h-16 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
-                    <div className="absolute top-3 left-3 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
-                      Video {index + 1}
+                  {/* Video Thumbnail */}
+                  <div className={`relative aspect-video bg-gradient-to-br ${getVideoThumbnailGradient(topicIndex)} flex items-center justify-center`}>
+                    <PlayIcon className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity" />
+                    
+                    {/* Duration Badge */}
+                    <div className="absolute top-2 right-2 bg-black bg-opacity-60 text-white text-xs px-2 py-1 rounded">
+                      {getEstimatedDuration(topicIndex)}
                     </div>
-                    <div className="absolute bottom-3 right-3 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded">
-                      {getEstimatedDuration(index)}
+                    
+                    {/* Topic Number */}
+                    <div className="absolute top-2 left-2 bg-white text-gray-900 text-xs font-semibold px-2 py-1 rounded">
+                      {topicIndex + 1}
                     </div>
                   </div>
                   
                   {/* Video Info */}
-                  <div className="p-4">
-                    <h3 className="font-medium text-sm leading-snug mb-2" style={{color: 'var(--foreground)'}}>
+                  <div className="p-3">
+                    <h3 className="font-medium text-sm leading-snug mb-1" style={{color: 'var(--foreground)'}}>
                       {topic}
                     </h3>
-                    <div className="flex items-center justify-between text-xs" style={{color: 'var(--foreground)', opacity: 0.6}}>
-                      <span className="flex items-center gap-1">
-                        <VideoCameraIcon className="w-3 h-3" />
-                        HD Quality
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <BookOpenIcon className="w-3 h-3" />
-                        Lesson {index + 1}
-                      </span>
-                    </div>
+                    <p className="text-xs" style={{color: 'var(--foreground)', opacity: 0.6}}>
+                      Unit {selectedUnit.unit_number} • {getEstimatedDuration(topicIndex)}
+                    </p>
                     
                     {/* Hover indicator */}
-                    <div className="mt-3 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to watch video →
+                    <div className="text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity mt-1">
+                      Play video →
                     </div>
                   </div>
                 </div>
@@ -139,7 +140,7 @@ export default function VideosPage() {
         ) : (
           /* Units Grid View */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {ictLessons.units.map((unit) => (
+            {edexcelData.units.map((unit) => (
               <div
                 key={unit.unit_number}
                 onClick={() => setSelectedUnit(unit)}
@@ -159,10 +160,6 @@ export default function VideosPage() {
 
                   <div className="space-y-2 text-xs" style={{color: 'var(--foreground)', opacity: 0.7}}>
                     <div className="flex items-center justify-center gap-1">
-                      <ClockIcon className="w-3 h-3" />
-                      <span>{unit.periods} periods</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1">
                       <VideoCameraIcon className="w-3 h-3" />
                       <span>{unit.topics.length} videos</span>
                     </div>
@@ -181,9 +178,9 @@ export default function VideosPage() {
         {/* Footer Note */}
         <div className="card mt-8 p-4 rounded-lg border">
           <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            🎥 To use video functionality, place your video files in the <code>public/videos/</code> folder organized by unit and topic names.
+            🎥 To use video functionality, organize video files in: <code>public/videos-edexcel/[Unit]/[Topic].mp4</code>
             <br />
-            Supported formats: MP4, WebM, or embed YouTube/Vimeo links.
+            {edexcelData.qualification} - {edexcelData.subject} (First Teaching: {edexcelData.first_teaching})
           </p>
         </div>
       </div>

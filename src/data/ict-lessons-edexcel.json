@@ -1,0 +1,62 @@
+{
+  "subject": "Information Technology",
+  "qualification": "Edexcel International Advanced Level",
+  "first_teaching": 2018,
+  "units": [
+    {
+      "unit_number": 1,
+      "unit_title": "Hardware, Software and Data",
+      "topics": [
+        "Components of a computer system",
+        "Types of software (system, application)",
+        "Data & information – differences",
+        "Information life cycle",
+        "Security, legality, ethics of IT"
+      ]
+    },
+    {
+      "unit_number": 2,
+      "unit_title": "Communications, Networking and the Online Environment",
+      "topics": [
+        "Networks: types, topologies, devices",
+        "Transmission media & protocols",
+        "Internet and online systems",
+        "Social media, cloud computing",
+        "Issues around connectivity (security, privacy)"
+      ]
+    },
+    {
+      "unit_number": 3,
+      "unit_title": "IT Systems in Organisations",
+      "topics": [
+        "Role of IT in organisations",
+        "Functional areas supported by IT",
+        "Business processes & IT solutions",
+        "Emerging technologies",
+        "Selecting and implementing IT systems"
+      ]
+    },
+    {
+      "unit_number": 4,
+      "unit_title": "Relational Database Design and Use",
+      "topics": [
+        "Database concepts – records, tables, relationships",
+        "Keys (primary, foreign), normalization",
+        "Use of SQL for creation, manipulation and queries",
+        "Database management and security",
+        "Implementation of database solutions"
+      ]
+    },
+    {
+      "unit_number": 5,
+      "unit_title": "Project – Investigating, Designing and Implementing a Solution",
+      "topics": [
+        "Project planning & analysis",
+        "Requirement gathering & specification",
+        "Design of solution – diagrams, user interface, data design",
+        "Implementation – software and hardware, testing",
+        "Evaluation and documentation"
+      ]
+    }
+  ]
+}
