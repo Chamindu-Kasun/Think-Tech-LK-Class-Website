@@ -255,15 +255,6 @@ export default function EdexcelPastPapers() {
             </div>
           </div>
         </div>
-
-        {/* Footer Note */}
-        <div className="card mt-8 p-4 rounded-lg border">
-          <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            📄 To use past papers functionality, organize PDF files in: <code>public/past-papers-edexcel/[Year]_[Unit_Name].pdf</code>
-            <br />
-            Example: <code>2024_Unit_1_Information_Technology_Systems.pdf</code>
-          </p>
-        </div>
       </div>
     </div>
   );

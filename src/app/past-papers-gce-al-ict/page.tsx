@@ -225,15 +225,6 @@ export default function GCEALPastPapers() {
             </div>
           </div>
         </div>
-
-        {/* Footer Note */}
-        <div className="card mt-8 p-4 rounded-lg border">
-          <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            📄 To use past papers functionality, organize PDF files in: <code>public/past-papers/[Year]_[Paper_Name].pdf</code>
-            <br />
-            Example: <code>2024_Paper_1_Theory.pdf</code>, <code>2024_Paper_2_Practical.pdf</code>
-          </p>
-        </div>
       </div>
     </div>
   );

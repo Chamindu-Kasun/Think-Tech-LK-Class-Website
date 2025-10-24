@@ -222,15 +222,6 @@ export default function DiscussionsPage() {
             ))}
           </div>
         )}
-
-        {/* Footer Note */}
-        <div className="card mt-8 p-4 rounded-lg border">
-          <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            💬 To use discussion functionality, organize PDF files in: <code>public/discussions/[Unit]/[Type]/[Topic].pdf</code>
-            <br />
-            Types: MCQ, Structured Essay, Essay | Each topic has 3 discussion materials
-          </p>
-        </div>
       </div>
     </div>
   );

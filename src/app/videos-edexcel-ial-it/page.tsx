@@ -174,15 +174,6 @@ export default function EdexcelVideos() {
             ))}
           </div>
         )}
-
-        {/* Footer Note */}
-        <div className="card mt-8 p-4 rounded-lg border">
-          <p className="text-sm text-center" style={{color: 'var(--foreground)', opacity: 0.7}}>
-            🎥 To use video functionality, organize video files in: <code>public/videos-edexcel/[Unit]/[Topic].mp4</code>
-            <br />
-            {edexcelData.qualification} - {edexcelData.subject} (First Teaching: {edexcelData.first_teaching})
-          </p>
-        </div>
       </div>
     </div>
   );
