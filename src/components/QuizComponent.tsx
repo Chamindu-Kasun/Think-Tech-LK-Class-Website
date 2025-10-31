@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CheckCircleIcon, XCircleIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface QuizOption {
@@ -20,23 +20,53 @@ interface QuizQuestion {
 interface QuizComponentProps {
   title: string;
   questions: QuizQuestion[];
+  onComplete?: () => void;
 }
 
-export default function QuizComponent({ title, questions }: QuizComponentProps) {
+export default function QuizComponent({ title, questions, onComplete }: QuizComponentProps) {
+  const MAX_QUESTIONS = 40;
+  const displayedQuestions = questions.slice(0, Math.min(MAX_QUESTIONS, questions.length));
+
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<{ [key: string]: string }>({});
   const [showResults, setShowResults] = useState<{ [key: string]: boolean }>({});
   const [quizCompleted, setQuizCompleted] = useState(false);
-  const [jumpToQuestion, setJumpToQuestion] = useState('');
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const isLastQuestion = currentQuestionIndex === questions.length - 1;
+  // Reset local state when questions change
+  useEffect(() => {
+    setCurrentQuestionIndex(0);
+    setSelectedAnswers({});
+    setShowResults({});
+    setQuizCompleted(false);
+  }, [questions]);
+
+  useEffect(() => {
+    if (quizCompleted && typeof onComplete === 'function') {
+      onComplete();
+    }
+  }, [quizCompleted, onComplete]);
+
+  if (displayedQuestions.length === 0) {
+    return (
+      <div className="max-w-4xl mx-auto p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 text-center">
+          <p className="text-gray-600 dark:text-gray-300 flex items-center justify-center">            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+            </svg></p>
+        </div>
+      </div>
+    );
+  }
+
+  const currentQuestion = displayedQuestions[currentQuestionIndex];
+  const isLastQuestion = currentQuestionIndex === displayedQuestions.length - 1;
   const isFirstQuestion = currentQuestionIndex === 0;
   const selectedAnswer = selectedAnswers[currentQuestion.id];
   const showResult = showResults[currentQuestion.id];
 
   const handleOptionSelect = (optionId: string) => {
-    if (showResult) return; // Prevent changing answer after submission
+    if (showResult) return;
     setSelectedAnswers(prev => ({
       ...prev,
       [currentQuestion.id]: optionId
@@ -45,7 +75,6 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
 
   const handleSubmitAnswer = () => {
     if (!selectedAnswer) return;
-    
     setShowResults(prev => ({
       ...prev,
       [currentQuestion.id]: true
@@ -66,25 +95,11 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
     }
   };
 
-  const handleJumpToQuestion = () => {
-    const questionNumber = parseInt(jumpToQuestion);
-    if (questionNumber >= 1 && questionNumber <= questions.length) {
-      setCurrentQuestionIndex(questionNumber - 1);
-      setJumpToQuestion('');
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleJumpToQuestion();
-    }
-  };
-
   const getScore = () => {
-    const correctAnswers = questions.filter(q => 
+    const correctAnswers = displayedQuestions.filter(q =>
       selectedAnswers[q.id] === q.correctAnswer
     ).length;
-    return { correct: correctAnswers, total: questions.length };
+    return { correct: correctAnswers, total: displayedQuestions.length };
   };
 
   const resetQuiz = () => {
@@ -97,7 +112,7 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
   if (quizCompleted) {
     const score = getScore();
     const percentage = Math.round((score.correct / score.total) * 100);
-    
+
     return (
       <div className="max-w-4xl mx-auto p-6">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg dark:shadow-gray-900/25 p-8 text-center">
@@ -122,7 +137,7 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
           </div>
           
           <div className="space-y-4 mb-8">
-            {questions.map((question, index) => {
+            {displayedQuestions.map((question, index) => {
               const userAnswer = selectedAnswers[question.id];
               const isCorrect = userAnswer === question.correctAnswer;
               
@@ -170,11 +185,11 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h1>
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentQuestionIndex + 1} of {displayedQuestions.length}
             </div>
           </div>
 
-          {/* Navigation Controls */}
+          {/* Navigation Controls (no jump-to) */}
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <button
@@ -203,27 +218,6 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
                 <ChevronRightIcon className="w-4 h-4" />
               </button>
             </div>
-
-            {/* Jump to Question */}
-            <div className="flex items-center space-x-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">Go to:</span>
-              <input
-                type="number"
-                min="1"
-                max={questions.length}
-                value={jumpToQuestion}
-                onChange={(e) => setJumpToQuestion(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Q#"
-                className="w-16 px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-400"
-              />
-              <button
-                onClick={handleJumpToQuestion}
-                className="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-              >
-                Go
-              </button>
-            </div>
           </div>
           
           {/* Progress Bar */}
@@ -231,7 +225,7 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
             <div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
               <div 
                 className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${((currentQuestionIndex + 1) / questions.length) * 100}%` }}
+                style={{ width: `${((currentQuestionIndex + 1) / displayedQuestions.length) * 100}%` }}
               ></div>
             </div>
           </div>
@@ -311,7 +305,7 @@ export default function QuizComponent({ title, questions }: QuizComponentProps) 
           {/* Action Buttons */}
           <div className="flex justify-between">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              {Object.keys(showResults).length}/{questions.length} answered
+              {Object.keys(showResults).length}/{displayedQuestions.length} answered
             </div>
             
             <div className="space-x-3">
