@@ -7,7 +7,7 @@ export default function EnglishQuizPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const generateWithGemini = async (count = 5) => {
+  const generateWithGemini = async (count = 20) => {
     setLoading(true);
     setError(null);
     setQuestions([]); // clear while loading to show spinner state
@@ -30,12 +30,12 @@ export default function EnglishQuizPage() {
 
   // load on mount
   useEffect(() => {
-    generateWithGemini(40);
+    generateWithGemini(20);
   }, []);
 
   // called when user finishes the quiz -- fetch new questions
   const handleQuizComplete = () => {
-    generateWithGemini(40);
+    generateWithGemini(20);
   };
 
   return (
