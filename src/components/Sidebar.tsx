@@ -83,6 +83,7 @@ interface SidebarProps {
 export default function Sidebar({ className = '' }: SidebarProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -117,10 +118,146 @@ export default function Sidebar({ className = '' }: SidebarProps) {
 
   return (
     <div className={`relative ${className}`}>
-      {/* Sidebar */}
+      {/* Mobile header + hamburger (visible on small screens) - fixed to top */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50">
+        <header className="flex items-center justify-between px-3 py-2 border-b bg-white dark:bg-slate-900 dark:border-slate-800">
+          <div className="flex items-center gap-3">
+            <button
+              aria-label="Open menu"
+              onClick={() => setMobileOpen(true)}
+              className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800"
+            >
+              {/* simple hamburger made with SVG; keeping Heroicons import minimal */}
+              <svg className="h-6 w-6 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            <span className="text-sm font-semibold">Think Tech LK</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <ThemeToggle showLabel={false} />
+          </div>
+        </header>
+
+        {/* Mobile slide-over menu */}
+        {mobileOpen && (
+          <div className="fixed inset-0 z-50">
+            <div
+              className="absolute inset-0 bg-black/40"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden
+            />
+            <div className="absolute left-0 top-0 h-full w-80 bg-white dark:bg-slate-900 shadow-lg p-4 overflow-y-auto">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold">Menu</h2>
+                <button
+                  aria-label="Close menu"
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800"
+                >
+                  <svg className="h-6 w-6 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Mobile nav uses same data and expansion state */}
+              <nav className="space-y-2">
+                {sidebarItems.map((item) => {
+                  const hasSubItems = item.subItems && item.subItems.length > 0;
+                  const isExpanded = isItemExpanded(item.name);
+
+                  return (
+                    <div key={item.name} className="space-y-1">
+                      <button
+                        onClick={() => {
+                          if (hasSubItems) {
+                            toggleExpanded(item.name);
+                          } else if (item.path) {
+                            handleItemClick(item.path);
+                            setMobileOpen(false);
+                          }
+                        }}
+                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 text-sm"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="text-lg">{item.icon}</div>
+                          <span className="font-medium">{item.name}</span>
+                        </div>
+                        {hasSubItems && (
+                          <div>
+                            {isExpanded ? (
+                              <ChevronUpIcon className="h-4 w-4" />
+                            ) : (
+                              <ChevronDownIcon className="h-4 w-4" />
+                            )}
+                          </div>
+                        )}
+                      </button>
+
+                      {hasSubItems && isExpanded && (
+                        <div className="pl-6 space-y-1">
+                          {item.subItems!.map((sub) => {
+                            const hasNested = sub.subItems && sub.subItems.length > 0;
+                            const subExpanded = isItemExpanded(sub.name);
+                            return (
+                              <div key={sub.name} className="space-y-1">
+                                <button
+                                  onClick={() => {
+                                    if (hasNested) {
+                                      toggleExpanded(sub.name);
+                                    } else if (sub.path) {
+                                      handleItemClick(sub.path);
+                                      setMobileOpen(false);
+                                    }
+                                  }}
+                                  className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-slate-800"
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <div className="text-base">{sub.icon}</div>
+                                    <span className="font-medium">{sub.name}</span>
+                                  </div>
+                                  {hasNested && (subExpanded ? <ChevronUpIcon className="h-3 w-3" /> : <ChevronDownIcon className="h-3 w-3" />)}
+                                </button>
+
+                                {hasNested && subExpanded && (
+                                  <div className="pl-4 space-y-1">
+                                    {sub.subItems!.map((nested) => (
+                                      <button
+                                        key={nested.name}
+                                        onClick={() => {
+                                          if (nested.path) {
+                                            handleItemClick(nested.path);
+                                            setMobileOpen(false);
+                                          }
+                                        }}
+                                        className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-slate-800"
+                                      >
+                                        <div className="text-sm">{nested.icon}</div>
+                                        <span className="font-medium">{nested.name}</span>
+                                      </button>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </nav>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Sidebar - hidden on small screens (only hamburger shown) */}
       <div
         className={`
           sidebar
+          hidden md:flex
           ${isCollapsed ? 'w-16' : 'w-16 md:w-64'} 
           border-r 
           transition-all duration-300 ease-in-out flex flex-col shadow-lg
