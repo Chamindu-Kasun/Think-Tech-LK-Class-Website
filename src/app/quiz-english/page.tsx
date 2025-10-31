@@ -1,9 +1,6 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import QuizComponent from '@/components/QuizComponent';
-
-
 
 export default function EnglishQuizPage() {
   const [questions, setQuestions] = useState<any[]>([]);
