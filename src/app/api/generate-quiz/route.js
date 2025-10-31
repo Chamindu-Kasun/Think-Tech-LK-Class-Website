@@ -179,7 +179,7 @@ const allTopics = [
 
 export async function POST(request) {
   try {
-    const { topics = allTopics, count = 40, difficulty = ['beginner', 'intermediate', 'advanced'], language = 'english' } = await request.json();
+    const { topics = allTopics, count = 20, difficulty = ['beginner', 'intermediate', 'advanced'], language = 'english' } = await request.json();
 
     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 const difficultyStr = Array.isArray(difficulty) ? difficulty.join(', ') : difficulty;
