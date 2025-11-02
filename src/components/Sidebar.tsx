@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from './ThemeToggle';
+import { QuizLockContext } from '@/context/QuizLockContext';
 
 interface SubMenuItem {
   name: string;
@@ -29,26 +30,12 @@ const sidebarItems: SidebarItem[] = [
     name: "Local",
     icon: "🎓",
     subItems: [
-      { 
-        name: "English Medium", 
-        icon: "🇬🇧",
-        subItems: [
+      
           { name: "Tutes", path: "/tutorials-gce-al-ict-english", icon: "📚" },
           { name: "Videos", path: "/videos-gce-al-ict-english", icon: "🎥" },
           { name: "Questions", path: "/discussions-gce-al-ict-english", icon: "💬" },
           { name: "Past Papers", path: "/past-papers-gce-al-ict-english", icon: "📄" },
-        ]
-      },
-      { 
-        name: "Sinhala Medium", 
-        icon: "🇱🇰",
-        subItems: [
-          { name: "Tutes", path: "/tutorials-gce-al-ict-sinhala", icon: "📚" },
-          { name: "Videos", path: "/videos-gce-al-ict-sinhala", icon: "🎥" },
-          { name: "Questions", path: "/discussions-gce-al-ict-sinhala", icon: "💬" },
-          { name: "Past Papers", path: "/past-papers-gce-al-ict-sinhala", icon: "📄" },
-        ]
-      }
+      
     ]
   },
   {
@@ -62,12 +49,14 @@ const sidebarItems: SidebarItem[] = [
     ]
   },
   {
-    name: "Quizzes",
+    name: "Model Questions",
+    path: "/quiz-english",
     icon: "🧠",
-    subItems: [
-      { name: "English Quiz", path: "/quiz-english", icon: "�🇧" },
-      { name: "Sinhala Quiz", path: "/quiz-sinhala", icon: "🇱🇰" },
-    ]
+  },
+  {
+    name: "Past Papers",
+    path: "/past-papers-quiz-english",
+    icon: "🧠",
   },
   { 
     name: "Contact", 
@@ -86,12 +75,18 @@ export default function Sidebar({ className = '' }: SidebarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+  const { locked, setLocked } = useContext(QuizLockContext);
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
 
+  // central navigation handler that respects quiz lock
   const handleItemClick = (path: string) => {
+    if (locked) {
+      // simply block navigation when locked
+      return;
+    }
     router.push(path);
   };
 
@@ -127,12 +122,11 @@ export default function Sidebar({ className = '' }: SidebarProps) {
               onClick={() => setMobileOpen(true)}
               className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-slate-800"
             >
-              {/* simple hamburger made with SVG; keeping Heroicons import minimal */}
               <svg className="h-6 w-6 text-slate-700 dark:text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="text-sm font-semibold">Think Tech LK</span>
+            <span className="text-sm font-semibold">Think Tech</span>
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle showLabel={false} />
@@ -166,6 +160,8 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                 {sidebarItems.map((item) => {
                   const hasSubItems = item.subItems && item.subItems.length > 0;
                   const isExpanded = isItemExpanded(item.name);
+                  const isNavItem = !hasSubItems && !!item.path;
+                  const navDisabled = isNavItem && locked;
 
                   return (
                     <div key={item.name} className="space-y-1">
@@ -174,11 +170,16 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                           if (hasSubItems) {
                             toggleExpanded(item.name);
                           } else if (item.path) {
-                            handleItemClick(item.path);
-                            setMobileOpen(false);
+                            if (!navDisabled) {
+                              handleItemClick(item.path);
+                              setMobileOpen(false);
+                            }
                           }
                         }}
-                        className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 text-sm"
+                        disabled={navDisabled}
+                        className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm
+                          ${navDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-slate-800'}
+                        `}
                       >
                         <div className="flex items-center gap-3">
                           <div className="text-lg">{item.icon}</div>
@@ -200,6 +201,9 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                           {item.subItems!.map((sub) => {
                             const hasNested = sub.subItems && sub.subItems.length > 0;
                             const subExpanded = isItemExpanded(sub.name);
+                            const isSubNav = !hasNested && !!sub.path;
+                            const subNavDisabled = isSubNav && locked;
+
                             return (
                               <div key={sub.name} className="space-y-1">
                                 <button
@@ -207,11 +211,16 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                                     if (hasNested) {
                                       toggleExpanded(sub.name);
                                     } else if (sub.path) {
-                                      handleItemClick(sub.path);
-                                      setMobileOpen(false);
+                                      if (!subNavDisabled) {
+                                        handleItemClick(sub.path);
+                                        setMobileOpen(false);
+                                      }
                                     }
                                   }}
-                                  className="w-full flex items-center justify-between px-3 py-2 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-slate-800"
+                                  disabled={subNavDisabled}
+                                  className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-sm
+                                    ${subNavDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50 dark:hover:bg-slate-800'}
+                                  `}
                                 >
                                   <div className="flex items-center gap-3">
                                     <div className="text-base">{sub.icon}</div>
@@ -226,12 +235,15 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                                       <button
                                         key={nested.name}
                                         onClick={() => {
-                                          if (nested.path) {
+                                          if (!locked && nested.path) {
                                             handleItemClick(nested.path);
                                             setMobileOpen(false);
                                           }
                                         }}
-                                        className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm hover:bg-gray-50 dark:hover:bg-slate-800"
+                                        disabled={locked}
+                                        className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm
+                                          ${locked ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50 dark:hover:bg-slate-800'}
+                                        `}
                                       >
                                         <div className="text-sm">{nested.icon}</div>
                                         <span className="font-medium">{nested.name}</span>
@@ -268,7 +280,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
         <div className="flex items-center justify-between p-4 border-b sidebar-item flex-shrink-0 hidden md:flex">
           {!isCollapsed && (
             <h2 className="text-xl font-bold sidebar-item hidden md:block">
-              Think Tech LK
+              Think Tech
             </h2>
           )}
           <button
@@ -291,6 +303,8 @@ export default function Sidebar({ className = '' }: SidebarProps) {
             const hasSubItems = item.subItems && item.subItems.length > 0;
             const isExpanded = isItemExpanded(item.name);
             const hasActiveSubItem = isSubItemActive(item.subItems);
+            const isNavItem = !hasSubItems && !!item.path;
+            const navDisabled = isNavItem && locked;
             
             return (
               <div key={item.name} className="space-y-1">
@@ -300,9 +314,10 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                     if (hasSubItems) {
                       toggleExpanded(item.name);
                     } else if (item.path) {
-                      handleItemClick(item.path);
+                      if (!navDisabled) handleItemClick(item.path);
                     }
                   }}
+                  disabled={navDisabled}
                   className={`
                     sidebar-item w-full flex items-center px-3 py-3 rounded-lg transition-all duration-200
                     ${isActive || hasActiveSubItem
@@ -311,6 +326,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                     }
                     ${isCollapsed ? 'justify-center' : 'justify-center md:justify-between'}
                     group
+                    ${navDisabled ? 'opacity-50 cursor-not-allowed' : ''}
                   `}
                   style={{
                     backgroundColor: isActive || hasActiveSubItem ? '#dbeafe' : undefined,
@@ -362,6 +378,8 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                       const hasNestedSubItems = subItem.subItems && subItem.subItems.length > 0;
                       const isSubExpanded = isItemExpanded(subItem.name);
                       const hasActiveNestedItem = hasNestedSubItems && subItem.subItems!.some(nested => pathname === nested.path);
+                      const isSubNav = !hasNestedSubItems && !!subItem.path;
+                      const subNavDisabled = isSubNav && locked;
                       
                       return (
                         <div key={subItem.name} className="space-y-1">
@@ -370,9 +388,10 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                               if (hasNestedSubItems) {
                                 toggleExpanded(subItem.name);
                               } else if (subItem.path) {
-                                handleItemClick(subItem.path);
+                                if (!subNavDisabled) handleItemClick(subItem.path);
                               }
                             }}
+                            disabled={subNavDisabled}
                             className={`
                               sidebar-item w-full flex items-center px-3 py-2 rounded-lg transition-all duration-200 text-sm
                               ${isSubActive || hasActiveNestedItem
@@ -381,6 +400,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                               }
                               justify-between
                               group
+                              ${subNavDisabled ? 'opacity-50 cursor-not-allowed' : ''}
                             `}
                           >
                             <div className="flex items-center">
@@ -413,7 +433,10 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                                 return (
                                   <button
                                     key={nestedItem.name}
-                                    onClick={() => handleItemClick(nestedItem.path!)}
+                                    onClick={() => {
+                                      if (!locked && nestedItem.path) handleItemClick(nestedItem.path);
+                                    }}
+                                    disabled={locked}
                                     className={`
                                       sidebar-item w-full flex items-center px-3 py-2 rounded-lg transition-all duration-200 text-xs
                                       ${isNestedActive
@@ -422,6 +445,7 @@ export default function Sidebar({ className = '' }: SidebarProps) {
                                       }
                                       justify-start
                                       group
+                                      ${locked ? 'opacity-50 cursor-not-allowed' : ''}
                                     `}
                                   >
                                     {/* Nested Item Icon */}

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "@/components/LayoutWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { QuizLockProvider } from '@/context/QuizLockContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,9 @@ export default function RootLayout({
           defaultTheme="system"
           storageKey="think-tech-theme"
         >
-          <LayoutWrapper>{children}</LayoutWrapper>
+          <QuizLockProvider>
+            <LayoutWrapper>{children}</LayoutWrapper>
+          </QuizLockProvider>
         </ThemeProvider>
       </body>
     </html>

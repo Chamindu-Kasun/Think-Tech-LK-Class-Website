@@ -1,0 +1,654 @@
+{
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Consider the following data: Which of the following correctly categorizes the above data?<br>A – temperature values given by a sensor<br>B – creator's name and the date of creation of a file saved in a computer<br>C – collection of posts and responses shared on a social media platform",
+      "options": [
+        {"id": "a", "text": "A – big data, B – continuous data, C – metadata"},
+        {"id": "b", "text": "A – continuous data, B – big data, C – metadata"},
+        {"id": "c", "text": "A – continuous data, B – metadata, C – big data"},
+        {"id": "d", "text": "A – metadata, B – big data, C – continuous data"},
+        {"id": "e", "text": "A – metadata, B – continuous data, C – big data"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "A – Temperature values from a sensor represent continuous data as they can take any value within a range. B – Creator's name and creation date of a file are metadata (data about data). C – Collection of posts and responses on social media platform represents big data due to its large volume, variety, and velocity characteristics."
+    },
+    {
+      "id": 2,
+      "question": "Which of the following are good examples for batch processing?<br>A – a system that outputs the presently vacant vehicle parking space closest to a user<br>B – a system that automatically backs up the files in a computer at the end of each day<br>C – a system that sorts the customer orders received during a day according to value",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "Batch processing involves processing data in groups at scheduled times rather than immediately. B (automatic backups at day end) and C (sorting daily orders) are batch processes. A provides real-time information about current parking availability, which is real-time processing, not batch processing."
+    },
+    {
+      "id": 3,
+      "question": "Select the answer containing the correct replacement for and in the following paragraph: Although ...................... is very old, it still plays a central role in the daily operations of the world's largest corporations. In addition to its power, the other main reason for its popularity is its .................. .",
+      "options": [
+        {"id": "a", "text": "A – cloud computing, B – non-reliance on the Internet"},
+        {"id": "b", "text": "A – cloud computing, B – non-reliance on service providers"},
+        {"id": "c", "text": "A – the main frame computer, B – low cost"},
+        {"id": "d", "text": "A – the main frame computer, B – reliability"},
+        {"id": "e", "text": "A – the main frame computer"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "Mainframe computers, despite being old technology, are still widely used in large corporations due to their exceptional reliability and processing power for critical business operations. Cloud computing is relatively newer technology and relies on internet connectivity."
+    },
+    {
+      "id": 4,
+      "question": "A village of houses constructed mainly with the aid of a special equipment is nearing completion in the United States of America. This equipment has been used to construct the walls of the houses with the foundations and the roofs constructed in the traditional way. This equipment reduces the number of workers required for the construction process and has made the process faster and cheaper with minimized construction waste. What could be this special equipment?",
+      "options": [
+        {"id": "a", "text": "a digitizer"},
+        {"id": "b", "text": "a large 3D printer"},
+        {"id": "c", "text": "a plotter"},
+        {"id": "d", "text": "a pointing device"},
+        {"id": "e", "text": "a joystick"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "Large-scale 3D printers are increasingly used in construction to print building walls and structures layer by layer using concrete or other construction materials. This technology reduces labor costs, speeds up construction, and minimizes material waste compared to traditional methods."
+    },
+    {
+      "id": 5,
+      "question": "The figure below shows some components and connections on a computer motherboard. What are indicated by the labels X, Y and Z respectively?<br>A – hard disk<br>B – ROM BIOS<br>C – connector for audio port<br>D – connector for network port<br>E – connector for USB port",
+      "options": [
+        {"id": "a", "text": "X – connector for video port Y – CPU Z – memory"},
+        {"id": "b", "text": "X – connector for video port Y – memory Z – CPU"},
+        {"id": "c", "text": "X – CPU Y – memory Z – connector for video port"},
+        {"id": "d", "text": "X – CPU Y – connector for video port Z – memory"},
+        {"id": "e", "text": "X – memory Y – connector for video port Z – CPU"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "On a typical motherboard: The CPU is usually the largest chip, often with a heatsink/fan. Memory slots (RAM) are typically long slots near the CPU. Video port connectors are part of the I/O panel at the back. This arrangement follows standard motherboard component layout conventions."
+    },
+    {
+      "id": 6,
+      "question": "A person notes that a desktop computer was booting very fast from the hard disk after the computer was repaired. Which of the following would have been done during the repair?",
+      "options": [
+        {"id": "a", "text": "decreasing RAM and reinstalling the operating system"},
+        {"id": "b", "text": "formatting the hard disk only"},
+        {"id": "c", "text": "installing a new CD drive only"},
+        {"id": "d", "text": "replacing the small fan inside the computer only"},
+        {"id": "e", "text": "replacing the hard disk with a Solid-state Drive (SSD) and reinstalling the operating system"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "SSDs (Solid-state Drives) provide significantly faster boot times and data access compared to traditional HDDs because they have no moving parts and use flash memory. Replacing an HDD with an SSD and installing a fresh OS is a common upgrade that dramatically improves system performance and boot speed."
+    },
+    {
+      "id": 7,
+      "question": "What is the correct binary equivalent of decimal 14.25?",
+      "options": [
+        {"id": "a", "text": "1001.10"},
+        {"id": "b", "text": "1010.11"},
+        {"id": "c", "text": "1011.01"},
+        {"id": "d", "text": "1110.01"},
+        {"id": "e", "text": "1111.10"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "14 in binary is 1110 (8+4+2). 0.25 in binary is 0.01 (1/4 = 2^-2). Therefore, 14.25 in decimal equals 1110.01 in binary."
+    },
+    {
+      "id": 8,
+      "question": "What is the correct decimal equivalent of octal 120?",
+      "options": [
+        {"id": "a", "text": "10"},
+        {"id": "b", "text": "17"},
+        {"id": "c", "text": "80"},
+        {"id": "d", "text": "136"},
+        {"id": "e", "text": "640"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "Octal 120 = (1 × 8^2) + (2 × 8^1) + (0 × 8^0) = (1 × 64) + (2 × 8) + (0 × 1) = 64 + 16 + 0 = 80 in decimal."
+    },
+    {
+      "id": 9,
+      "question": "Which of the following are correct?<br>I : EB7₁₆ = 1110 1011 0111₂<br>II : 84₁₀ = 1010100₂<br>III : 753₈ = 1001011₂",
+      "options": [
+        {"id": "a", "text": "I only"},
+        {"id": "b", "text": "I and II only"},
+        {"id": "c", "text": "I and III only"},
+        {"id": "d", "text": "II and III only"},
+        {"id": "e", "text": "All I, II and III"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "I: EB7₁₆ = 1110 1011 0111₂ is correct (E=1110, B=1011, 7=0111). II: 84₁₀ = 1010100₂ is correct (64+16+4=84). III: 753₈ = 111101011₂, not 1001011₂, so this is incorrect."
+    },
+    {
+      "id": 10,
+      "question": "The second and third rows of the following table contain two English words and their binary representations according to the ASCII code. The binary representation of No! is kept blank. What is the correct replacement for the blank?",
+      "options": [
+        {"id": "a", "text": "0100001 1001110 1101111"},
+        {"id": "b", "text": "1001110 0100001 1101111"},
+        {"id": "c", "text": "1001110 1101111 0100001"},
+        {"id": "d", "text": "1101110 0100001 1101111"},
+        {"id": "e", "text": "1101110 1101111 0100001"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "In ASCII: 'N' = 1001110, 'o' = 1101111, '!' = 0100001. The word 'No!' should maintain the character order: N, o, !. Therefore, the binary representation should be 1001110 (N), 1101111 (o), 0100001 (!)."
+    },
+    {
+      "id": 11,
+      "question": "11001₂ + 10001₂ =",
+      "options": [
+        {"id": "a", "text": "101010₂"},
+        {"id": "b", "text": "101011₂"},
+        {"id": "c", "text": "101100₂"},
+        {"id": "d", "text": "111001₂"},
+        {"id": "e", "text": "111010₂"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "11001₂ = 25₁₀, 10001₂ = 17₁₀. 25 + 17 = 42₁₀. 42 in binary is 101010₂. Let's verify: 11001₂ + 10001₂ = 101010₂ (25 + 17 = 42)."
+    },
+    {
+      "id": 12,
+      "question": "Which of the following express the output (F) of the given circuit?",
+      "options": [
+        {"id": "a", "text": "(𝑋+ 𝑌̅)𝑍"},
+        {"id": "b", "text": "(𝑋+ 𝑌̅)̅̅̅̅̅̅̅̅̅̅ + 𝑍"},
+        {"id": "c", "text": "(𝑋+ 𝑌̅)̅̅̅̅̅̅̅̅̅̅𝑍"},
+        {"id": "d", "text": "𝑋𝑌̅ + 𝑍"},
+        {"id": "e", "text": "(𝑋𝑌̅)̅̅̅̅̅̅ + 𝑍"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "Based on the circuit diagram (not shown but implied), the output F is derived from the NOR of (X + Y̅) combined with Z. The correct Boolean expression that represents this circuit configuration is (𝑋+ 𝑌̅)̅̅̅̅̅̅̅̅̅̅ + 𝑍."
+    },
+    {
+      "id": 13,
+      "question": "Applying Double complement and De Morgan's laws to 𝑥̅ + 𝑦𝑧 results in",
+      "options": [
+        {"id": "a", "text": "𝑥𝑦+ 𝑧"},
+        {"id": "b", "text": "𝑥̅𝑦̅ + 𝑧"},
+        {"id": "c", "text": "𝑥̅𝑦̅𝑧"},
+        {"id": "d", "text": "𝑥(𝑦𝑧̅)̅̅̅̅̅̅̅̅"},
+        {"id": "e", "text": "𝑥̅𝑦̅ + 𝑦𝑧"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "Using De Morgan's law: 𝑥̅ + 𝑦𝑧 = (𝑥̅ + 𝑦)(𝑥̅ + 𝑧). Then applying double complement and simplification leads to 𝑥𝑦 + 𝑧 through Boolean algebra transformations."
+    },
+    {
+      "id": 14,
+      "question": "What is the most simple Boolean expression that can be obtained through the given Karnaugh map?",
+      "options": [
+        {"id": "a", "text": "𝑦"},
+        {"id": "b", "text": "𝑥𝑧"},
+        {"id": "c", "text": "𝑥𝑧̅"},
+        {"id": "d", "text": "𝑥̅𝑧"},
+        {"id": "e", "text": "𝑦+ 𝑥𝑧̅"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "Based on the Karnaugh map grouping (not shown but implied), the largest prime implicant that covers the most 1's in the map results in the simplest expression 𝑥𝑧, which represents the minimal sum-of-products form."
+    },
+    {
+      "id": 15,
+      "question": "Which of the following are correct regarding the Process Control Block (PCB)?<br>A – It is a data structure used by the operating system to manage information about a process.<br>B – It is created during the compilation of a program<br>C – The Program Counter values of two PCBs can be the same.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "A is correct - PCB is the OS data structure for process management. B is incorrect - PCB is created when a process is created, not during compilation. C is correct - Multiple processes can have the same Program Counter value if they're executing the same instruction in different instances."
+    },
+    {
+      "id": 16,
+      "question": "Amara switches on a multi-user computer system. After it has booted, Sama logs on to the computer from a terminal and starts a web browser. After sometime, Sama starts a text editor also to work on her Python program. Then Rani also logs on to the computer from another terminal and starts a web browser. Which of the following are possible execution sequences on the processor of this computer?",
+      "options": [
+        {"id": "a", "text": "BIOS → OS → Sama's web browser process → OS → Sama's text editor process → OS → Rani's web browser process → OS → Sama's text editor process → ..."},
+        {"id": "b", "text": "BIOS → OS → Sama's web browser process → Sama's text editor process → OS → Rani's web browser process → OS → Sama's web browser process → ..."},
+        {"id": "c", "text": "BIOS → Sama's web browser process → Sama's text editor process → OS → Rani's web browser process → OS → Sama's text editor process → ..."},
+        {"id": "d", "text": "OS → BIOS → Sama's web browser process → OS → Sama's text editor process → OS → Rani's web browser process → OS → Sama's web browser process → ..."},
+        {"id": "e", "text": "OS → BIOS → Sama's web browser process → Sama's text editor process → OS → Rani's web browser process → OS → Sama's web browser process → ..."}
+      ],
+      "correctAnswer": "a",
+      "explanation": "In a multi-user system with time-sharing, the OS controls process execution through context switching. The sequence must start with BIOS, then OS, followed by alternating between user processes and OS for context switches. Processes cannot run directly after each other without OS intervention in a preemptive multitasking system."
+    },
+    {
+      "id": 17,
+      "question": "Each block of a disk is 512 bytes. When a file of size 1959 bytes is stored on that disk, how many bytes allocated to the file would be wasted?",
+      "options": [
+        {"id": "a", "text": "89"},
+        {"id": "b", "text": "423"},
+        {"id": "c", "text": "512"},
+        {"id": "d", "text": "601"},
+        {"id": "e", "text": "1447"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "1959 bytes ÷ 512 bytes/block = 3.826 blocks. Since we can only allocate whole blocks, we need 4 blocks (4 × 512 = 2048 bytes). Wasted space = 2048 - 1959 = 89 bytes."
+    },
+    {
+      "id": 18,
+      "question": "Which of the given statements (I, II, III) are true with respect to the following two diagrams? (Note: V – Voltage, t – time)<br>I – A depicts an analog signal.<br>II – B depicts a digital signal.<br>III – B is a digitized version of A.",
+      "options": [
+        {"id": "a", "text": "I only"},
+        {"id": "b", "text": "II only"},
+        {"id": "c", "text": "III only"},
+        {"id": "d", "text": "II and III only"},
+        {"id": "e", "text": "All I, II and III"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "I is true - A shows a continuous waveform characteristic of analog signals. II is true - B shows discrete voltage levels characteristic of digital signals. III is true - B appears to be a sampled, quantized version of A, representing the analog-to-digital conversion process."
+    },
+    {
+      "id": 19,
+      "question": "Which of the following is correct regarding parity bits?",
+      "options": [
+        {"id": "a", "text": "The parity bit in a set of bits is adjusted after that set of bits is communicated."},
+        {"id": "b", "text": "The parity bit for a set of bits is selected to ensure the total number of 1-bits in the set is either even or odd."},
+        {"id": "c", "text": "The transmission speed of a communication is increased by parity bits."},
+        {"id": "d", "text": "Parity bits are added after a communication to correct errors."},
+        {"id": "e", "text": "Encryption needed in a data transmission is provided by parity bits"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "Parity bits are added to data before transmission to make the total number of 1-bits either even (even parity) or odd (odd parity). They help detect single-bit errors but don't increase speed, correct errors, or provide encryption."
+    },
+    {
+      "id": 20,
+      "question": "What is done by a modem when it receives an analog signal from a PSTN (Public Switched Telephone Network) line?",
+      "options": [
+        {"id": "a", "text": "It amplifies the signal for better clarity."},
+        {"id": "b", "text": "It compresses the signal for storage."},
+        {"id": "c", "text": "It demodulates the signal back into digital form."},
+        {"id": "d", "text": "It encrypts the signal for security."},
+        {"id": "e", "text": "It modulates the signal further for transmission"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "A modem (modulator-demodulator) demodulates incoming analog signals from telephone lines back into digital data that computers can understand. The reverse process (modulation) is used when sending digital data over analog lines."
+    },
+    {
+      "id": 21,
+      "question": "Which of the following best describes a switch in a network?",
+      "options": [
+        {"id": "a", "text": "It amplifies data signals for clearer transmission."},
+        {"id": "b", "text": "It always broadcasts all incoming data to every device in the network."},
+        {"id": "c", "text": "It compresses data for more efficient transmission."},
+        {"id": "d", "text": "It directs data only to the specific device for which the data is intended."},
+        {"id": "e", "text": "It stores data for future processing"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "Network switches operate at the data link layer and use MAC addresses to forward data frames only to the specific port connected to the destination device, unlike hubs that broadcast to all devices."
+    },
+    {
+      "id": 22,
+      "question": "How many usable host addresses are available in the 192.168.100.0/27 IP address block?",
+      "options": [
+        {"id": "a", "text": "16"},
+        {"id": "b", "text": "30"},
+        {"id": "c", "text": "32"},
+        {"id": "d", "text": "62"},
+        {"id": "e", "text": "64"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "/27 means 27 bits for network, leaving 5 bits for hosts. 2^5 = 32 total addresses. Subtract 2 for network and broadcast addresses: 32 - 2 = 30 usable host addresses."
+    },
+    {
+      "id": 23,
+      "question": "Which of the following are properties of the Transmission Control Protocol (TCP)?<br>A – detection and correction of any errors in a communication<br>B – receiver acknowledging to the sender about the receipt of a data packet<br>C – ensuring data packets are received in order",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "TCP provides all these features: error detection and correction through retransmission, acknowledgment of received packets, and sequencing to ensure packets are delivered in order. This makes TCP a reliable, connection-oriented protocol."
+    },
+    {
+      "id": 24,
+      "question": "A new system must be delivered completely to the client by a given date. There should not be any partial deliveries. Further, the system architecture and design must be fully defined before any coding began. Which of the following are suitable models to develop this system?<br>A – waterfall<br>B – spiral<br>C – agile",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "The Waterfall model is most suitable because it requires complete specification before implementation and delivers the entire system at once. Agile and Spiral models involve iterative development with partial deliveries, which doesn't match the requirements."
+    },
+    {
+      "id": 25,
+      "question": "During the feasibility analysis of a software development project, it was discovered that the development team does not have the knowledge and the skills to develop the software. Which component of the feasibility study would have identified this issue?",
+      "options": [
+        {"id": "a", "text": "economic feasibility"},
+        {"id": "b", "text": "legal feasibility"},
+        {"id": "c", "text": "operational feasibility"},
+        {"id": "d", "text": "schedule feasibility"},
+        {"id": "e", "text": "technical feasibility"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "Technical feasibility assesses whether the organization has the technical capability, expertise, and resources to complete the project. The lack of knowledge and skills in the development team is a technical feasibility issue."
+    },
+    {
+      "id": 26,
+      "question": "Which of the following shows the correct order of stages in the System Development Life Cycle?",
+      "options": [
+        {"id": "a", "text": "Feasibility study → Requirements analysis → System design → Implementation → Testing → Deployment"},
+        {"id": "b", "text": "Feasibility study → System design → Requirements analysis → Implementation → Testing → Deployment"},
+        {"id": "c", "text": "Requirements analysis → Feasibility study → System design → Testing → Deployment → Implementation"},
+        {"id": "d", "text": "Requirements analysis → System design → Feasibility study → Deployment → Testing → Implementation"},
+        {"id": "e", "text": "System design → Requirements analysis → Feasibility study → Implementation → Testing → Deployment"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "The standard SDLC sequence is: Feasibility study (to determine if project is viable), Requirements analysis (gather user needs), System design (create system architecture), Implementation (coding), Testing (verify system works), Deployment (release to users)."
+    },
+    {
+      "id": 27,
+      "question": "Which of the following is not true regarding the prototyping technique used in system development?",
+      "options": [
+        {"id": "a", "text": "Prototypes need to be approved by the users, during the 'system testing' phase."},
+        {"id": "b", "text": "Prototyping is neither necessary nor appropriate in every project."},
+        {"id": "c", "text": "Successful prototyping helps to develop a system that better addresses user needs and expectations."},
+        {"id": "d", "text": "Successful prototyping helps to eliminate costly late changes to a system."},
+        {"id": "e", "text": "To get the benefits of prototyping, user feedback on the prototypes is extremely important"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "Prototypes are typically reviewed and approved by users during the requirements or design phase, not during system testing. System testing occurs much later in the development cycle when the complete system is tested before deployment."
+    },
+    {
+      "id": 28,
+      "question": "Which of the following statements regarding software tests are correct?<br>A – White-box tests involve testing the internal structures and workings of a software.<br>B – Unit tests are usually performed after the system test.<br>C – System developers should take every effort to make the acceptance test successful.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "A is correct - White-box testing examines internal code structure. B is incorrect - Unit testing is the first level of testing, done before integration and system testing. C is correct - Developers should ensure the system meets acceptance criteria before user acceptance testing."
+    },
+    {
+      "id": 29,
+      "question": "A playground reservation system is needed for students and others to reserve the school playground (which is adjoining the school) for team sports. Each reservation is for two hours. All non-students will need to pay for their reservations. The reservations are to be made using the National Identity Card (NIC) numbers. The NICs are to be verified at the playground gate before a team is let in. The algorithm that could be used for the reservation process is shown below with blanks labelled A – D.",
+      "options": [
+        {"id": "a", "text": "A – DISPLAY existing bookings B – GET date/time C – GET NIC number D – Complete user's credit/debit card payment"},
+        {"id": "b", "text": "A – DISPLAY existing bookings B – GET date/time C – Complete user's credit/debit card payment D – GET NIC number"},
+        {"id": "c", "text": "A – DISPLAY existing bookings B – GET NIC number C – Complete user's credit/debit card payment D – GET date/time"},
+        {"id": "d", "text": "A – GET date/time B – DISPLAY existing bookings C – GET NIC number D – Complete user's credit/debit card payment"},
+        {"id": "e", "text": "A – GET NIC number B – DISPLAY existing bookings C – GET date/time D – Complete user's credit/debit card payment"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "The logical flow should be: First display existing bookings (A), then get the desired date/time (B), then get NIC number for verification (C), and finally process payment only if the user is not a student (D). This sequence ensures users see availability before selecting time, and payment is the final step."
+    },
+    {
+      "id": 30,
+      "question": "Which of the following suggestions about the above system is not suitable?",
+      "options": [
+        {"id": "a", "text": "The list of reservations for a given date should be provided when needed."},
+        {"id": "b", "text": "Each time a student is making a reservation he/she should be required to enter his/her home address."},
+        {"id": "c", "text": "It is suitable to check the validity of the NIC number."},
+        {"id": "d", "text": "Reservations should not clash with school times."},
+        {"id": "e", "text": "For fairness, the number of reservations that a particular NIC number is allowed per day should be limited"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "Requiring students to enter their home address every time they make a reservation is unnecessary and creates friction. The NIC number should be sufficient for identification, and address information (if needed) should be stored in the system after initial registration."
+    },
+    {
+      "id": 31,
+      "question": "Consider the following relation about a student who is registered in a programme at an institute: STUDENT(Sno, Snic, Sname, Sphone, Prog_number)<br>Note: Sno - the unique registration number of the student<br>Snic - the national identity card number of the student<br>Sname - the name of the student<br>Sphone - a phone number of the student<br>Prog_number - the unique number of the programme for which the student has registered<br>Which of the following are correct?<br>A – Sno can be the primary key.<br>B – Snic can be a candidate key.<br>C – Prog_number can be a foreign key.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "A is correct - Sno is unique and can be primary key. B is correct - Snic is also unique and can be a candidate key. C is correct - Prog_number can be a foreign key referencing the programme table."
+    },
+    {
+      "id": 32,
+      "question": "Which of the following are true?<br>A – A table can have multiple candidate keys.<br>B – A primary key is always a candidate key.<br>C – A candidate key of one table can be used as a foreign key in another table.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "All statements are true: A table can have multiple candidate keys (alternative unique identifiers). The primary key is chosen from among the candidate keys. Any candidate key (not just the primary key) can be referenced as a foreign key in another table."
+    },
+    {
+      "id": 33,
+      "question": "Which of the following are examples of one-to many relationships?<br>A – A customer can place many orders, but each order is placed by only one customer.<br>B – An employee can be assigned to multiple projects, and each project can have multiple employees.<br>C – One department has one manager, and each manager manages multiple departments.<br>D – A supplier can supply only one item, and an item can be supplied by only one supplier.",
+      "options": [
+        {"id": "a", "text": "A and B only"},
+        {"id": "b", "text": "A and C only"},
+        {"id": "c", "text": "A and D only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "C and D only"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "A is one-to-many (one customer, many orders). B is many-to-many. C is one-to-many (one manager per department, but a manager can manage multiple departments over time). D is one-to-one. Therefore A and C represent one-to-many relationships."
+    },
+    {
+      "id": 34,
+      "question": "Match the Normal forms labelled from 0 to 3 to the corresponding Descriptions labelled from A to D.",
+      "options": [
+        {"id": "a", "text": "0 – A, 1 – B, 2 – C, 3 – D"},
+        {"id": "b", "text": "0 – A, 1 – C, 2 – B, 3 – D"},
+        {"id": "c", "text": "0 – B, 1 – C, 2 – A, 3 – D"},
+        {"id": "d", "text": "0 – C, 1 – A, 2 – D, 3 – B"},
+        {"id": "e", "text": "0 – D, 1 – B, 2 – C, 3 – A"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "Correct matching: 0NF - C (repeating data), 1NF - A (single-valued attributes), 2NF - D (transitive dependency), 3NF - B (full functional dependency). This follows the standard normalization hierarchy."
+    },
+    {
+      "id": 35,
+      "question": "What is the primary purpose of database normalization?",
+      "options": [
+        {"id": "a", "text": "eliminating data redundancy and anomalies"},
+        {"id": "b", "text": "increasing the number of tables in the database"},
+        {"id": "c", "text": "organizing data into logical structures and relationships"},
+        {"id": "d", "text": "simplifying database queries"},
+        {"id": "e", "text": "speeding up database queries"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "The primary purpose of normalization is to eliminate data redundancy and prevent data anomalies (insertion, update, deletion anomalies) by organizing data into well-structured tables with proper relationships."
+    },
+    {
+      "id": 36,
+      "question": "Which of the following will change all occurrences of 'Mahawa' in the 'City' attribute of USER in relation to 'Maho'?",
+      "options": [
+        {"id": "a", "text": "MODIFY USER SET City = 'Maho' WHERE City = 'Mahawa';"},
+        {"id": "b", "text": "MODIFY USER SET City = 'Mahawa' INTO City = 'Maho';"},
+        {"id": "c", "text": "UPDATE USER SET City = 'Mahawa' INTO City = 'Maho';"},
+        {"id": "d", "text": "UPDATE USER SET City = 'Maho' WHERE City = 'Mahawa';"},
+        {"id": "e", "text": "UPDATE USER SET City = 'Maho' WHERE City != 'Mahawa';"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "The correct SQL UPDATE syntax is: UPDATE table_name SET column = new_value WHERE condition; So 'UPDATE USER SET City = 'Maho' WHERE City = 'Mahawa';' will change all occurrences of 'Mahawa' to 'Maho' in the City column."
+    },
+    {
+      "id": 37,
+      "question": "Which of the following lists the given SQL statement clauses in the correct order?",
+      "options": [
+        {"id": "a", "text": "SELECT, FROM, WHERE, GROUP BY, HAVING"},
+        {"id": "b", "text": "SELECT, GROUP BY, HAVING, FROM, WHERE"},
+        {"id": "c", "text": "SELECT, HAVING, FROM, WHERE, GROUP BY"},
+        {"id": "d", "text": "SELECT, WHERE, GROUP BY, HAVING, FROM"},
+        {"id": "e", "text": "SELECT, WHERE, HAVING, GROUP BY, FROM"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "The standard SQL query clause order is: SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY. This order is syntactically required in SQL."
+    },
+    {
+      "id": 38,
+      "question": "What would be the execution output of the following Python code if a = 5, b = 3, c = 2 and d = 6?<br>x = (a - b) ** c + d % c<br>print(x)",
+      "options": [
+        {"id": "a", "text": "–22"},
+        {"id": "b", "text": "0"},
+        {"id": "c", "text": "1"},
+        {"id": "d", "text": "4"},
+        {"id": "e", "text": "7"}
+      ],
+      "correctAnswer": "d",
+      "explanation": "(a - b) = (5 - 3) = 2, then 2 ** c = 2^2 = 4. d % c = 6 % 2 = 0. So 4 + 0 = 4. Python operator precedence: parentheses first, then exponentiation, then modulus, then addition."
+    },
+    {
+      "id": 39,
+      "question": "What is the execution output of the following Python code?<br>qns = ['a' , 'b']<br>for x in range (1,3):<br>for y in qns:<br>print(x,y, end=' ')",
+      "options": [
+        {"id": "a", "text": "0 a 2 b"},
+        {"id": "b", "text": "1 a 3 b"},
+        {"id": "c", "text": "1 a 1 b 2 a 2 b"},
+        {"id": "d", "text": "1 a 1 b 3 a 3 b"},
+        {"id": "e", "text": "1 a 3 a 1 b 3 b"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "range(1,3) generates [1, 2]. The nested loops iterate: x=1, y='a' → '1 a'; x=1, y='b' → '1 b'; x=2, y='a' → '2 a'; x=2, y='b' → '2 b'. The end=' ' parameter keeps output on same line with spaces."
+    },
+    {
+      "id": 40,
+      "question": "What is the execution output of the following Python code?<br>def list_operation(nlist):<br>for i in range(len(nlist)):<br>if i % 2 == 0:<br>nlist[i] = nlist[i] ** 2<br>else:<br>nlist[i] = nlist[i] + 3<br>return nlist<br>numbers = [1, 2, 3, 4, 5]<br>output = list_operation(numbers)<br>print(output)",
+      "options": [
+        {"id": "a", "text": "[1, 2, 3, 4, 5]"},
+        {"id": "b", "text": "[1, 5, 9, 7, 25]"},
+        {"id": "c", "text": "[2, 5, 6, 7, 10]"},
+        {"id": "d", "text": "[4, 4, 6, 16, 8]"},
+        {"id": "e", "text": "[4, 6,16, 8, 36]"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "The function squares elements at even indices and adds 3 to elements at odd indices. Index 0 (even): 1² = 1; Index 1 (odd): 2+3 = 5; Index 2 (even): 3² = 9; Index 3 (odd): 4+3 = 7; Index 4 (even): 5² = 25. Result: [1, 5, 9, 7, 25]"
+    },
+    {
+      "id": 41,
+      "question": "What is the execution output of the following Python code?<br>marks = [(1, 'amara', 96), (2, 'rajah', 34), (3, 'rani', 49),(4, 'fahim', 68) ]<br>i = –1<br>while i < (len(marks) - 1):<br>i += 1<br>if marks[i][2] < 50:<br>continue<br>print(marks[i][1], end=' ')",
+      "options": [
+        {"id": "a", "text": "1 4"},
+        {"id": "b", "text": "1 amara 4 fahim"},
+        {"id": "c", "text": "amara fahim"},
+        {"id": "d", "text": "rajah"},
+        {"id": "e", "text": "rajah rani"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "The code prints names of students with marks >= 50. 'amara' has 96 (>=50), 'rajah' has 34 (<50 - skip), 'rani' has 49 (<50 - skip), 'fahim' has 68 (>=50). Output: 'amara fahim'"
+    },
+    {
+      "id": 42,
+      "question": "The output shown in Figure 42.2 can be obtained using exports_imports.txt shown in Figure 42.1 by executing the Python code shown in Figure 42.3 with suitable replacements for its blanks labelled P – U.",
+      "options": [
+        {"id": "a", "text": "P – file Q – line R – break S – 1 T – 0 U – 2"},
+        {"id": "b", "text": "P – file Q – line R – continue S – 2 T – 1 U – 3"},
+        {"id": "c", "text": "P – file Q – line R – continue S – 2 T – 1 U – 3"},
+        {"id": "d", "text": "P – line Q – file R – continue S – 1 T – 0 U – 2"},
+        {"id": "e", "text": "P – line Q – file R – break S – 1 T – 0 U – 2"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "P should be 'file' (file handle), Q should be 'line' (reading line by line), R should be 'break' (exit loop when no more lines), S should be 1 (index for E/I indicator), T should be 0 (index for item name), U should be 2 (index for percentage)."
+    },
+    {
+      "id": 43,
+      "question": "Which of the following statements are true about the web pages created using web authoring tools?<br>A – The HTML Code for such a page is automatically generated.<br>B – Such a page can be enhanced by manually adding HTML tags later.<br>C – Multimedia content cannot be added to them.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "A is true - web authoring tools generate HTML code automatically. B is true - the generated HTML can be manually edited later. C is false - modern web authoring tools support adding multimedia content like images, videos, and audio."
+    },
+    {
+      "id": 44,
+      "question": "What is the primary purpose of an HTML style sheet?",
+      "options": [
+        {"id": "a", "text": "to apply formatting and styles to HTML elements."},
+        {"id": "b", "text": "to create databases for a website."},
+        {"id": "c", "text": "to define the structure of a webpage."},
+        {"id": "d", "text": "to send form data to databases."},
+        {"id": "e", "text": "to update the content of a webpage"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "Style sheets (CSS) are used to control the presentation, formatting, and layout of HTML elements, separating content from presentation."
+    },
+    {
+      "id": 45,
+      "question": "Which of the following can be used to change the look of an entire website by changing just one file?<br>A – external CSS<br>B – inline CSS<br>C – internal CSS",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "Only external CSS allows changing the appearance of an entire website by modifying a single .css file that is linked to multiple HTML pages. Inline and internal CSS are page-specific."
+    },
+    {
+      "id": 46,
+      "question": "For what purpose is POST used in an HTML form?",
+      "options": [
+        {"id": "a", "text": "to display a confirmation message after form submission"},
+        {"id": "b", "text": "to display form data on the screen"},
+        {"id": "c", "text": "to refresh the web page"},
+        {"id": "d", "text": "to retrieve data from the server"},
+        {"id": "e", "text": "to send form data to the server"}
+      ],
+      "correctAnswer": "e",
+      "explanation": "The POST method is used to send form data to the server for processing. It's more secure than GET as data isn't visible in the URL and has higher size limits."
+    },
+    {
+      "id": 47,
+      "question": "Which of the following statements are correct regarding website publishing?<br>A – One has to obtain a domain name to publish a website.<br>B – Before deciding to host a website on one's own computer, one has to do a good cost-benefit analysis on the same.<br>C – Shared hosting will provide faster access to the site's users all the time compared to either Virtual Private Server (VPS) hosting or dedicated server hosting.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "b",
+      "explanation": "A is true - a domain name is needed for public access. B is true - self-hosting requires careful analysis of costs, security, and reliability. C is false - shared hosting is typically slower than VPS or dedicated hosting due to resource sharing."
+    },
+    {
+      "id": 48,
+      "question": "Which of the following is correct?",
+      "options": [
+        {"id": "a", "text": "Arduino Uno is the protocol used for setting up simple IoT applications."},
+        {"id": "b", "text": "LDR and LED are sensors used in Arduino Uno based IoT applications."},
+        {"id": "c", "text": "Serial.begin(9600) provides a valid baud rate to initiate the serial communication between the Arduino Uno board and the computer."},
+        {"id": "d", "text": "Since Arduino Uno does not have a hard disk it is not subjected to unauthorized data access."},
+        {"id": "e", "text": "An ethernet shield must be connected to the four pins between A0 – A5 of the ATMega328P microcontroller"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "Serial.begin(9600) is correct Arduino code to initialize serial communication at 9600 baud. Arduino Uno is hardware, not a protocol. LDR is a sensor but LED is an output device. Arduino can still be subject to unauthorized access. Ethernet shield uses specific SPI pins, not A0-A5."
+    },
+    {
+      "id": 49,
+      "question": "Which of the following statements are true?<br>A – Generative Artificial Intelligence (AI) tools can produce new content or data, according to their learned patterns.<br>B – The use of Generative AI Tools such as GPT with user prompts is an example of machine-to-machine coexistence.<br>C – Although AI is used today, strong AI (machines possessing general intelligence and capabilities that are similar to human cognition) still remains a theoretical concept.",
+      "options": [
+        {"id": "a", "text": "A only"},
+        {"id": "b", "text": "A and B only"},
+        {"id": "c", "text": "A and C only"},
+        {"id": "d", "text": "B and C only"},
+        {"id": "e", "text": "All A, B and C"}
+      ],
+      "correctAnswer": "c",
+      "explanation": "A is true - Generative AI creates new content based on training. B is false - Human using GPT is human-machine interaction, not machine-to-machine. C is true - Strong AI (AGI) with human-like general intelligence remains theoretical; current AI is narrow/weak AI."
+    },
+    {
+      "id": 50,
+      "question": "Consider the following statements P and Q: Which of the following is valid regarding the above two statements?<br>P – A qubit of a quantum computer can have a higher number of states than a bit of a traditional computer.<br>Q – Quantum computing promises to perform calculations, currently beyond traditional computer's reach, at incredible speeds.",
+      "options": [
+        {"id": "a", "text": "Both statements P and Q are correct and statement P gives the reason for Statement Q."},
+        {"id": "b", "text": "Both Statements P and Q are correct but the points presented in the two statements are not related."},
+        {"id": "c", "text": "Statement P is correct but statement Q is incorrect."},
+        {"id": "d", "text": "Statement P is incorrect but statement Q is correct."},
+        {"id": "e", "text": "Both statements P and Q are incorrect"}
+      ],
+      "correctAnswer": "a",
+      "explanation": "Both statements are correct and related. P is true - qubits can exist in superposition of states (0 and 1 simultaneously), enabling more states than classical bits. Q is true - this property allows quantum computers to solve certain problems exponentially faster, and P explains why Q is possible."
+    }
+  ]
+}
