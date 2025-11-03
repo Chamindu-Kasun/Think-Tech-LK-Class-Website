@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ictLessons from '@/data/ict-lessons.json';
-import { ChatBubbleLeftRightIcon, ClockIcon, BookOpenIcon, DocumentTextIcon, PencilSquareIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleLeftRightIcon, ClockIcon, BookOpenIcon, DocumentTextIcon, PencilSquareIcon, QuestionMarkCircleIcon, VideoCameraIcon } from '@heroicons/react/24/outline';
 
 interface Unit {
   unit_number: number;
@@ -11,30 +11,64 @@ interface Unit {
   topics: string[];
 }
 
-type DiscussionType = 'mcq' | 'structured' | 'essay';
+type DiscussionType = 'video' | 'tute' | 'questions';
 
 export default function DiscussionsPage() {
   const [selectedUnit, setSelectedUnit] = useState<Unit | null>(null);
-  
+
+  // modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalType, setModalType] = useState<'video' | 'pdf' | null>(null);
+  const [modalSrc, setModalSrc] = useState('');
+  const [modalTitle, setModalTitle] = useState('');
+  const [modalLoading, setModalLoading] = useState(false);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modalOpen) setModalOpen(false);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [modalOpen]);
+
+  // Update this base to your S3 bucket URL
+  const S3_BASE = 'https://example-bucket.s3.amazonaws.com/discussions';
+
+  // sanitize/encode helper
+  const makeResourceUrl = (unitTitle: string, topic: string, discussionType: DiscussionType) => {
+    const folder = discussionType === 'video' ? 'Videos' : discussionType === 'tute' ? 'Tutes' : 'Questions';
+    const ext = discussionType === 'video' ? '.mp4' : '.pdf';
+    const encodedUnit = encodeURIComponent(unitTitle);
+    const encodedTopic = encodeURIComponent(topic);
+    // prefer S3, fall back to public path if you keep files locally
+    return `${S3_BASE}/${encodedUnit}/${folder}/${encodedTopic}${ext}`;
+  };
+
+  // open modal for video or pdf (tute) — use example S3 url
+  const openResourceModal = (unitTitle: string, topic: string, discussionType: DiscussionType) => {
+    const url = makeResourceUrl(unitTitle, topic, discussionType);
+    setModalType(discussionType === 'video' ? 'video' : 'pdf');
+    setModalSrc(url);
+    setModalTitle(`${topic} — ${discussionType === 'video' ? 'Video' : 'Tute'}`);
+    setModalLoading(true);
+    setModalOpen(true);
+  };
+
+  // fallback click handler for "questions" or legacy behaviour (open pdf in new tab)
   const handleDiscussionClick = (unitTitle: string, topic: string, discussionType: DiscussionType) => {
-    console.log(`Opening ${discussionType} discussion for: ${unitTitle} - ${topic}`);
-    
-    // Construct PDF path based on discussion type
-    const discussionTypeFolder = discussionType === 'mcq' ? 'MCQ' : 
-                                 discussionType === 'structured' ? 'Structured Essay' : 'Essay';
-    const pdfPath = `/discussions/${encodeURIComponent(unitTitle)}/${discussionTypeFolder}/${encodeURIComponent(topic)}.pdf`;
-    
-    // Try to open the PDF
+    if (discussionType === 'video' || discussionType === 'tute') {
+      openResourceModal(unitTitle, topic, discussionType);
+      return;
+    }
+
+    // keep previous behaviour for other types (open pdf in new tab)
+    const discussionTypeFolder = discussionType === 'video' ? 'Videos' :
+                                 discussionType === 'tute' ? 'Tutes' : 'Questions';
+    const pdfPath = `${S3_BASE}/${encodeURIComponent(unitTitle)}/${discussionTypeFolder}/${encodeURIComponent(topic)}.pdf`;
+
     const newWindow = window.open(pdfPath, '_blank');
-    
-    // If PDF doesn't exist, show a helpful message
-    if (newWindow) {
-      newWindow.onload = () => {
-        // PDF loaded successfully
-      };
-      newWindow.onerror = () => {
-        alert(`Discussion PDF not found for:\nUnit: ${unitTitle}\nTopic: ${topic}\nType: ${discussionTypeFolder}\n\nPlease add the PDF file to: public/discussions/${unitTitle}/${discussionTypeFolder}/${topic}.pdf`);
-      };
+    if (!newWindow) {
+      alert('Unable to open new window. Please allow popups or try the resource from the file system.');
     }
   };
 
@@ -45,27 +79,27 @@ export default function DiscussionsPage() {
 
   const getDiscussionTypeInfo = (type: DiscussionType) => {
     switch (type) {
-      case 'mcq':
+      case 'video':
         return {
-          icon: <QuestionMarkCircleIcon className="w-5 h-5" />,
-          title: 'MCQ Questions',
-          description: 'Multiple Choice Questions with detailed explanations',
+          icon: <VideoCameraIcon className="w-5 h-5" />,
+          title: 'Video',
+          description: 'Video explanation',
           color: 'from-green-500 to-emerald-600',
           textColor: 'text-green-600'
         };
-      case 'structured':
+      case 'tute':
         return {
           icon: <DocumentTextIcon className="w-5 h-5" />,
-          title: 'Structured Essays',
-          description: 'Step-by-step structured answer discussions',
+          title: 'Tute',
+          description: 'Printable tutorial (PDF)',
           color: 'from-blue-500 to-cyan-600',
           textColor: 'text-blue-600'
         };
-      case 'essay':
+      case 'questions':
         return {
           icon: <PencilSquareIcon className="w-5 h-5" />,
-          title: 'Essay Questions',
-          description: 'Comprehensive essay-type question discussions',
+          title: 'Questions',
+          description: 'Question set / MCQ',
           color: 'from-purple-500 to-pink-600',
           textColor: 'text-purple-600'
         };
@@ -78,10 +112,10 @@ export default function DiscussionsPage() {
         {/* Header */}
         <div className="mb-8">
           <p className="text-lg" style={{color: 'var(--foreground)', opacity: 0.8}}>
-            {ictLessons.subject} - {ictLessons.grade} (Question Discussions)
+            {ictLessons.subject} - {ictLessons.grade} 
           </p>
           <p className="text-sm mt-1" style={{color: 'var(--foreground)', opacity: 0.6}}>
-            MCQ, Structured Essay, and Essay Question Discussions
+            Videos | Tutes | Questions
           </p>
         </div>
 
@@ -100,20 +134,12 @@ export default function DiscussionsPage() {
                 <span className="text-3xl">{getUnitIcon(selectedUnit.unit_number)}</span>
                 <div>
                   <h2 className="text-2xl font-bold" style={{color: 'var(--foreground)'}}>
-                    Unit {selectedUnit.unit_number}: {selectedUnit.unit_title}
+                    {selectedUnit.unit_number}: {selectedUnit.unit_title}
                   </h2>
                   <div className="flex items-center gap-4 mt-2 text-sm" style={{color: 'var(--foreground)', opacity: 0.7}}>
                     <span className="flex items-center gap-1">
-                      <ClockIcon className="w-4 h-4" />
-                      {selectedUnit.periods} periods
-                    </span>
-                    <span className="flex items-center gap-1">
                       <ChatBubbleLeftRightIcon className="w-4 h-4" />
                       {selectedUnit.topics.length} topics
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <DocumentTextIcon className="w-4 h-4" />
-                      {selectedUnit.topics.length * 3} discussion materials
                     </span>
                   </div>
                 </div>
@@ -133,14 +159,11 @@ export default function DiscussionsPage() {
                         {topic}
                       </h3>
                     </div>
-                    <p className="text-sm ml-8" style={{color: 'var(--foreground)', opacity: 0.6}}>
-                      Discussion materials for this topic
-                    </p>
                   </div>
 
                   {/* Discussion Type Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ml-8">
-                    {(['mcq', 'structured', 'essay'] as DiscussionType[]).map((discussionType) => {
+                    {(['video', 'tute', 'questions'] as DiscussionType[]).map((discussionType) => {
                       const typeInfo = getDiscussionTypeInfo(discussionType);
                       return (
                         <div
@@ -160,13 +183,9 @@ export default function DiscussionsPage() {
                             <h4 className={`font-semibold text-sm mb-1 ${typeInfo.textColor}`}>
                               {typeInfo.title}
                             </h4>
-                            <p className="text-xs leading-relaxed" style={{color: 'var(--foreground)', opacity: 0.7}}>
-                              {typeInfo.description}
-                            </p>
-                            
                             {/* Hover indicator */}
                             <div className={`mt-3 text-xs ${typeInfo.textColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
-                              Click to open PDF →
+                              Click to open →
                             </div>
                           </div>
                         </div>
@@ -198,24 +217,9 @@ export default function DiscussionsPage() {
                     </h3>
                   </div>
 
-                  <div className="space-y-2 text-xs" style={{color: 'var(--foreground)', opacity: 0.7}}>
-                    <div className="flex items-center justify-center gap-1">
-                      <ClockIcon className="w-3 h-3" />
-                      <span>{unit.periods} periods</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1">
-                      <ChatBubbleLeftRightIcon className="w-3 h-3" />
-                      <span>{unit.topics.length} topics</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-1">
-                      <DocumentTextIcon className="w-3 h-3" />
-                      <span>{unit.topics.length * 3} discussions</span>
-                    </div>
-                  </div>
-
                   {/* Hover indicator */}
                   <div className="mt-4 text-xs text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Click to explore discussions →
+                    Click to explore →
                   </div>
                 </div>
               </div>
@@ -223,6 +227,65 @@ export default function DiscussionsPage() {
           </div>
         )}
       </div>
+
+      {/* Modal */}
+      {modalOpen && modalType && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          aria-modal="true"
+          role="dialog"
+        >
+          <div className="absolute inset-0 bg-black/60" onClick={() => setModalOpen(false)} />
+
+          <div className="relative max-w-4xl w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b dark:border-slate-700">
+              <div className="text-sm font-medium">{modalTitle}</div>
+              <div>
+                <button
+                  onClick={() => setModalOpen(false)}
+                  className="text-sm px-3 py-1 rounded-md bg-slate-100 dark:bg-slate-700"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+
+            <div className="p-4">
+              {modalType === 'video' ? (
+                <>
+                  {modalLoading && <div className="mb-2 text-sm text-slate-500">Loading video…</div>}
+                  <video
+                    src={modalSrc}
+                    controls
+                    autoPlay
+                    className="w-full h-[420px] bg-black rounded-md"
+                    onCanPlay={() => setModalLoading(false)}
+                    onError={() => {
+                      setModalLoading(false);
+                      alert('Failed to load video. Check S3 URL or CORS settings.\n\nURL: ' + modalSrc);
+                      setModalOpen(false);
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  {modalLoading && <div className="mb-2 text-sm text-slate-500">Loading document…</div>}
+                  <iframe
+                    src={modalSrc}
+                    className="w-full h-[720px] rounded-md border"
+                    title={modalTitle}
+                    onLoad={() => setModalLoading(false)}
+                    // iframe onError isn't reliable — provide user hint if it fails to render
+                  />
+                  <div className="mt-2 text-xs text-slate-500">
+                    If the PDF does not display, open it directly: <button className="text-blue-600 underline" onClick={() => window.open(modalSrc, '_blank')}>Open in new tab</button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

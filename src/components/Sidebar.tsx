@@ -28,15 +28,8 @@ const sidebarItems: SidebarItem[] = [
   },
   {
     name: "Local",
+    path: "/gce-al-ict", 
     icon: "🎓",
-    subItems: [
-      
-          { name: "Tutes", path: "/tutorials-gce-al-ict-english", icon: "📚" },
-          { name: "Videos", path: "/videos-gce-al-ict-english", icon: "🎥" },
-          { name: "Questions", path: "/discussions-gce-al-ict-english", icon: "💬" },
-          { name: "Past Papers", path: "/past-papers-gce-al-ict-english", icon: "📄" },
-      
-    ]
   },
   {
     name: "Edexcel",
