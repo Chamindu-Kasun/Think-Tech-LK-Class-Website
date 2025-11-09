@@ -29,6 +29,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
+          src="https://quote-widget-app.vercel.app/quote-widget.js"
+          data-api="https://quote-widget-app.vercel.app/api/random-quote"
+          data-position="bottom-right"
+          data-icon="🦉"
+          data-autohide="50000">
+        </script>
+        <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
